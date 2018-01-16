@@ -1,103 +1,90 @@
-/*
- *  98. Sort List
- * 
- * Sort a linked list in O(n log n) time using constant space complexity.
- *
- * Lintcode: http://lintcode.com/en/problem/sort-list/
- * 
- */
+package leetcode;
+
 public class SortList {
-	public int listSize(ListNode head)
+	public String printLinkedList(ListNode head)
 	{
-		int res = 0;
-		while (head != null)
+		StringBuilder sb = new StringBuilder();
+		while(head != null)
 		{
-			res++;
+			sb.append(" " + head.val);
 			head = head.next;
 		}
-		return res;
+		return sb.toString();
 	}
 	
-	public ListNode mergeList(ListNode left, ListNode right)
+	public ListNode mergeNodes(ListNode left, ListNode right)
 	{
 		ListNode head = new ListNode(0);
-		ListNode current = head;
-		
-		while(left != null && right != null)
+		ListNode t = head;
+		while (left != null && right != null)
 		{
 			if (left.val < right.val)
 			{
-				current.next = left;
+				head.next = left;
 				left = left.next;
 			}
 			else
 			{
-				current.next = right;
+				head.next = right;
 				right = right.next;
 			}
-			current = current.next;
 		}
-		
-		while (left!=null)
+		while (left != null)
 		{
-			current.next = left;
-			current = current.next;
+			head.next = left;
 			left = left.next;
 		}
-		while (right!=null)
+		while (right != null)
 		{
-			current.next = right;
-			current = current.next;
+			head.next = right;
 			right = right.next;
 		}
-		current.next = null;
-		
-		
-		return  head.next;
+		head.next = null;
+		return t.next;
 	}
 	
     public ListNode sortList(ListNode head) {
-        if (head == null || head.next == null)
+    		if (head == null || head.next == null)
+    			return head;
+    		
+        int size = 0;
+        ListNode t = head;
+        while (t != null)
         {
-        	return head;
+        		size++;
+        		t = t.next;
         }
-        
-        int size = listSize(head);
-        int med = size / 2;
         ListNode left = head;
-        ListNode right = head;
-        ListNode t = left;
+        t = head;
+        ListNode right = head.next;
         
-        
-        while (med >1)
+        for (int i = 1 ; i < size / 2 ; i++)
         {
-        	t = t.next;
-        	right = right.next;
-        	med--;
+        		t = t.next;
+        		right = right.next;
+        		
         }
         
-        right = right.next;
         t.next = null;
+        right.next = null;
+        sortList(left);
+        sortList(right);
         
-        left = sortList(left);
-        right = sortList(right);
-        
-        return mergeList(left, right);
-        
-        
-        
+        return mergeNodes(left, right);
+        	
     }
+    
 	public static void main(String[] args) {
-		ListNode head = new ListNode(3);
-		head.next = new ListNode(5);
-		head.next.next = new ListNode(7);
-		head.next.next.next = new ListNode(2);
-		head.next.next.next.next = new ListNode(1);
-		head.next.next.next.next.next = new ListNode(3);
-		head.next.next.next.next.next.next = new ListNode(6);
+		ListNode head = new ListNode(1);
+		head.next = new ListNode(3);
+		head.next.next = new ListNode(5);
+		head.next.next.next = new ListNode(6);
+		head.next.next.next.next = new ListNode(7);
+		head.next.next.next.next.next = new ListNode(8);
+		head.next.next.next.next.next.next = new ListNode(4);
 		SortList sol = new SortList();
-		ListNode sorted = sol.sortList(head);
-		Utils.printList(sorted);
-	}
+		ListNode bla = sol.sortList(head);
+		System.out.println("solution"+sol.printLinkedList(bla));
 
+	}
 }

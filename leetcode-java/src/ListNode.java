@@ -1,9 +1,10 @@
+package leetcode;
 
-	 public class ListNode {
-	    int val;
+public class ListNode {
+	      int val;
 	     ListNode next;
-	     ListNode(int val) {
-	         this.val = val;
-	         this.next = null;
-	     }
-	 }
+	     ListNode(int x) {
+	     val = x;
+	       next = null;
+	    }
+}
