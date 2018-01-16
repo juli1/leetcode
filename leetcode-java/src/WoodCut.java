@@ -1,4 +1,4 @@
-package leetcode;
+
 /*
  * Given n pieces of wood with length L[i] (integer array). 
  * Cut them into small pieces to guarantee you could have 

@@ -1,4 +1,4 @@
-package leetcode;
+
 import java.util.*;
 public class MinimumWindowSubstring {
 	public void copyHash(Map<Character, Integer> destination, Map<Character, Integer> source)

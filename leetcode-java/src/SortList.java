@@ -1,4 +1,4 @@
-package leetcode;
+
 
 public class SortList {
 	public String printLinkedList(ListNode head)
